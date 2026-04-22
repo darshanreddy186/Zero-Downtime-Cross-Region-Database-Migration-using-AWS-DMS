@@ -103,19 +103,21 @@ or (Use cloud formation code)
 ```sql
 binlog_format = ROW
 binlog_row_image = FULL
-```sql
 
 ---
 
-Attach to source DB
+---
+
+- Attach to source DB
 Reboot database
 
-### Step 4: Create DMS Replication Instance
+## Step 4: Create DMS Replication Instance
 Go to DMS → Replication Instances
 Click Create
 Select:
 Instance: dms.t3.medium
 
+---
 
 Step 5: Create Endpoints
 Source Endpoint
@@ -134,6 +136,7 @@ Test connection
 
 <img width="1919" height="1016" alt="Screenshot 2026-04-20 181853" src="https://github.com/user-attachments/assets/729f1465-9a6b-40c9-a2ad-dc7a22e92447" />
 
+---
 
 Step 6: Create Migration Task
 Go to DMS → Tasks → Create Task
@@ -144,6 +147,7 @@ Table Mapping:
 Schema: demo_db
 Table: users
 
+---
 
 Step 7: Start Migration
 Start the task
@@ -154,6 +158,7 @@ CDC status
 <img width="1919" height="999" alt="Screenshot 2026-04-20 190715" src="https://github.com/user-attachments/assets/67ea2724-1f51-43f5-93f2-47991fa9b8f7" />
 
 
+---
 
 Step 8: Validate Data
 
@@ -169,6 +174,7 @@ INSERT INTO users VALUES (1, 'test_user');
 Source database:
 <img width="1918" height="1038" alt="Screenshot 2026-04-20 190801" src="https://github.com/user-attachments/assets/8429cfdb-aacc-4ba8-8726-eb9551df4ce2" />
 
+---
 
 Step 9: Test CDC
 UPDATE users SET name = 'updated' WHERE id = 1;
@@ -177,6 +183,7 @@ UPDATE users SET name = 'updated' WHERE id = 1;
 Target database :
 <img width="1919" height="1066" alt="Screenshot 2026-04-20 190910" src="https://github.com/user-attachments/assets/c285a260-beca-421d-bb70-5f3ccee27d39" />
 
+---
 
 Step 10: Cutover
 Stop writes to source
@@ -184,6 +191,7 @@ Ensure replication lag = 0
 Switch application to target DB
 
 
+---
 
 
  Key Concepts
@@ -231,6 +239,8 @@ RDS (2 instances)	~$1.6
 DMS	~$2.4
 Data Transfer	~$0.2
 Total	~$4–5
+
+---
 
 Results
 ✅ Zero downtime migration achieved
