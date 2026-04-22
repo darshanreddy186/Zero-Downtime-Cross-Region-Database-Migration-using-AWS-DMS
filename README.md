@@ -107,10 +107,9 @@ binlog_row_image = FULL
 
 ---
 
----
 
 - Attach to source DB
-Reboot database
+- Reboot database
 
 ## Step 4: Create DMS Replication Instance
 Go to DMS → Replication Instances
@@ -120,17 +119,23 @@ Instance: dms.t3.medium
 
 ---
 
-Step 5: Create Endpoints
+## Step 5: Create Endpoints
+
 Source Endpoint
+
 Enter source DB details (endpoint of source RDS)
+
 
 <img width="1918" height="1009" alt="Screenshot 2026-04-20 180528" src="https://github.com/user-attachments/assets/c1aa84a0-d30e-45a5-a83b-1b0303b2887d" />
 
 Test connection
+
 <img width="1910" height="915" alt="Screenshot 2026-04-20 181107" src="https://github.com/user-attachments/assets/936006d2-0803-4c68-a30c-f2b67f041291" />
 
 Target Endpoint
+
 Enter target DB details (endpoint of destination RDS)
+
 <img width="1919" height="1061" alt="Screenshot 2026-04-20 181116" src="https://github.com/user-attachments/assets/0eee28b3-5023-4dff-892d-fe4a72c020ee" />
 
 Test connection 
@@ -139,7 +144,8 @@ Test connection
 
 ---
 
-Step 6: Create Migration Task
+## Step 6: Create Migration Task
+
 Go to DMS → Tasks → Create Task
 Configure:
 Migration Type:
@@ -150,7 +156,8 @@ Table: users
 
 ---
 
-Step 7: Start Migration
+## Step 7: Start Migration
+
 Start the task
 Monitor:
 Full load
@@ -161,11 +168,11 @@ CDC status
 
 ---
 
-Step 8: Validate Data
+## Step 8: Validate Data
 
-connect source-db RDS database to mysql workbeanch
-username admin password - Password123!
-endpoint is RDS database endpoint
+- connect source-db RDS database to mysql workbeanch
+- username admin password - Password123!
+- endpoint is RDS database endpoint
 
 do the same for target RDS database
 
@@ -177,7 +184,8 @@ Source database:
 
 ---
 
-Step 9: Test CDC
+## Step 9: Test CDC
+
 UPDATE users SET name = 'updated' WHERE id = 1;
 
 👉 Changes should reflect in target DB instantly
@@ -186,7 +194,8 @@ Target database :
 
 ---
 
-Step 10: Cutover
+## Step 10: Cutover
+
 Stop writes to source
 Ensure replication lag = 0
 Switch application to target DB
@@ -195,7 +204,7 @@ Switch application to target DB
 ---
 
 
- Key Concepts
+## Key Concepts
 🔹 What is CDC?
 
 CDC captures changes (INSERT, UPDATE, DELETE) from database logs and replicates them in real time.
@@ -204,20 +213,24 @@ CDC captures changes (INSERT, UPDATE, DELETE) from database logs and replicates 
 
 It is the compute engine that:
 
-Reads source DB
-Processes data
-Writes to target DB
+- Reads source DB
+- Processes data
+- Writes to target DB
 
 🔹 What is DMS Task?
 
 Defines:
 
-What to migrate
-How to migrate
-When to migrate
-Common Issues & Fixes
- Error 1236 (Binlog Not Found)
+- What to migrate
+- How to migrate
+- When to migrate
+- Common Issues & Fixes
 
+---
+## possible errors
+  
+ Error 1236 (Binlog Not Found)
+ 
 Cause: Old logs deleted
 
 Fix:
@@ -234,7 +247,9 @@ binlog_row_image = FULL
 Check task status
 Ensure CDC enabled
 
-Cost Estimation
+---
+
+## Cost Estimation
 Service	Cost
 RDS (2 instances)	~$1.6
 DMS	~$2.4
@@ -243,22 +258,26 @@ Total	~$4–5
 
 ---
 
-Results
-✅ Zero downtime migration achieved
-🔄 Real-time replication working
-📈 Data consistency maintained
-🏁 Conclusion
+## Results
+- ✅ Zero downtime migration achieved
+- 🔄 Real-time replication working
+- 📈 Data consistency maintained
+- 🏁 Conclusion
 
 This project demonstrates how AWS DMS with CDC enables seamless and reliable database migration with minimal downtime.
 
-📚 References
-AWS DMS Documentation
-AWS RDS Documentation
-MySQL Binlog Documentation
+---
+
+##  References
+
+1.AWS DMS Documentation
+2.AWS RDS Documentation
+3.MySQL Binlog Documentation
 
 
 ---
 
+## Author
 
-
+Darshan B
 
