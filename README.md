@@ -103,25 +103,18 @@ or (Use cloud formation code)
 ```sql
 binlog_format = ROW
 binlog_row_image = FULL
-
-### Create Parameter Group
-
-1. Go to RDS → Parameter Groups  
-2. Create new parameter group  
-3. Set:
-
 ```sql
-binlog_format = ROW
-binlog_row_image = FULL
+
+---
+
 Attach to source DB
 Reboot database
 
-Step 4: Create DMS Replication Instance
+### Step 4: Create DMS Replication Instance
 Go to DMS → Replication Instances
 Click Create
 Select:
 Instance: dms.t3.medium
-
 
 
 Step 5: Create Endpoints
