@@ -103,6 +103,7 @@ or (Use cloud formation code)
 ```sql
 binlog_format = ROW
 binlog_row_image = FULL
+```
 
 ---
 
